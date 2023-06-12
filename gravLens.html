@@ -1,0 +1,132 @@
+<!doctype html>
+
+<html lang="en">
+	
+<head>
+	<!------- METADATA ------->
+		
+	<!-- to ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+	<!-- date -->
+	<meta name="Last updated" content="15-08-2022">
+	
+	<!-- site description -->
+	<meta name="Description" content="TBC">
+	
+	<!-- author -->
+	<meta name="Author" content="A Gow; W Enzi">
+	
+	<!-- copyright holder -->
+	<meta name="Copyright" content="A Gow; W Enzi">
+	
+	<!-- search engine keywords -->
+	<meta name="Keywords" content="TBC">
+	
+	<!-- site ownership verification -->
+	<!--<meta name="google-site-verification" content="fSfN1S1RwtWvjSAmTeSMe5L5UnKpsVb28QsqNtfOKKk" />-->
+	
+	
+	<!-- TITLE -->
+	<title>Gravitational lensing game</title>
+	
+	<!-- Setting root folder -->
+	<!-- <base href="http://users.sussex.ac.uk/~adg27/Sussex%20Harmony/"> -->
+		  
+	
+	<!-- STYLE: Bootstrap CDN -->
+	
+	<!-- Latest compiled and minified CSS -->
+	<!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> -->
+	<!-- jQuery library -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<!-- Latest compiled JavaScript -->
+	<!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+	
+	<!-- STYLE: PERSONAL EDITS -->
+	<link rel="stylesheet" href="gravLens.css">
+	
+	<!-- SCRIPT: PERSONAL JAVASCRIPT -->
+	<script src="./gravLens.js"></script>
+	
+	<!-- SCRIPT: HTML INCLUDES -->
+	<!-- <script src="./csi.min.js"></script> -->
+	
+	<!-- BROWSER TAB ICON -->
+	<link rel="icon" href="./favicon.png">
+	
+</head>
+
+	
+	
+<body>
+	
+	<h1>Gravitational lensing game</h1>
+	
+	<modifierPanel>
+		<select onchange="changeImage(this.value)" id="dropDownImage">
+			<option selected disabled hidden value="None">Change image</option>
+			<option value="Demo-circle">Demo circle</option>
+			<option value="JWST01">JWST image 1</option>
+			<option value="JWST02">JWST image 2</option>
+			<option value="JWST03">JWST image 3</option>
+			<!-- <option value="Upload">Upload a photo</option> -->
+		</select>
+		
+		<!-- <select onchange="changeLevel(this.value)" id="dropDownLevel" style="display: none;"> -->
+			<!-- <option selected disabled hidden value="None">Choose difficulty level</option> -->
+			<!-- <option value="Level01">Level 1</option> -->
+			<!-- <option value="Level02">Level 2</option> -->
+			<!-- <option value="Level03">Level 3</option> -->
+			<!-- <option value="Level04">Level 4</option> -->
+		<!-- </select> -->
+		
+		<button onclick="playGame()">Play</button>
+		<button onclick="demoGame()">Demo</button>
+	</modifierPanel>
+	
+	<imgPanel>	
+		<imgContainer id="guessContainer">
+			<h2 id="guessLabel">Source</h2>
+			<canvas id="guess"></canvas>
+		</imgContainer><!--
+		--><imgContainer>
+			<h2 id="targetLabel">Target</h2>
+			<canvas id="target"></canvas>
+		</imgContainer>
+		
+	</imgPanel>
+	
+	<paramPanel>
+	
+		<input type="range" id="x0Range" min="0" max="1000" value="500" step="10" class="slider" oninput="updateParam(this)">
+		<label for="x0" style="display: inline-block; width:20px;">x<sub>0</sub>:</label>
+		<input type="text" id="x0" name="x0" value="500" onkeydown="checkEnter(this,event)"></br>
+		
+		<input type="range" id="y0Range" min="0" max="1000" value="350" step="10" class="slider" oninput="updateParam(this)">
+		<label for="y0" style="display: inline-block; width:20px;">y<sub>0</sub>:</label>
+		<input type="text" id="y0" name="y0" value="350" onkeydown="checkEnter(this,event)"></br>
+		
+		<input type="range" id="aRange" min="0" max="500" value="200" step="5" class="slider" oninput="updateParam(this)">
+		<label for="a" style="display: inline-block; width:20px;">R<sub>E</sub>:</label>
+		<input type="text" id="a" name="a" value="200" onkeydown="checkEnter(this,event)"></br>
+		
+		<input type="range" id="qRange" min="0" max="1" value="0.5" step="0.01" class="slider" oninput="updateParam(this)">
+		<label for="q" style="display: inline-block; width:20px;">q:</label>
+		<input type="text" id="q" name="q" value="0.5" onkeydown="checkEnter(this,event)"></br>
+		
+		<input type="range" id="gammaRange" min="0" max="180" value="0" step="5" class="slider" oninput="updateParam(this)">
+		<label for="gamma" style="display: inline-block; width:20px;">&#947;:</label>
+		<input type="text" id="gamma" name="gamma" value="0" onkeydown="checkEnter(this,event)"></br></br>
+		
+		<button onclick="lensGuess()">Lens</button>
+		<button onclick="score()">Score</button>
+	
+	</paramPanel>
+	
+	<img id="sourceIMG" style="display: none;" src="JWST01.png"></img>
+	<canvas id="dataCanvas" style="display: none;"></canvas>
+	
+</body>
+	
+</html>
