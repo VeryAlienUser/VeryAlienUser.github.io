@@ -280,6 +280,11 @@ function getPixel(x, y, x0, y0, a, q, gamma)
 	};
 };
 
+function unLens()
+{
+	dataContext.drawImage(sourceIMG,0,0);
+}
+
 function score()
 {
 	console.log([x0,x0Guess,y0,y0Guess,a,aGuess,q,qGuess,gamma*180/Math.PI,gammaGuess*180/Math.PI]);
