@@ -283,7 +283,8 @@ function getPixel(x, y, x0, y0, a, q, gamma)
 function unLens()
 {
 	dataContext.drawImage(sourceIMG,0,0);
-}
+	guessContext.drawImage(dataCanvas,0,0);
+};
 
 function score()
 {
@@ -305,4 +306,4 @@ function score()
 	totalScore = delta / (loss + epsilon);
 	
 	console.log(totalScore);
-}
+};
