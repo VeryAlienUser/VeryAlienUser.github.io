@@ -355,8 +355,6 @@ function reveal()
 	guessContext.stroke();
 	guessContext.strokeStyle = "white";
 	guessContext.setLineDash([10, 10]);
-	guessContext.beginPath();
-	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
 	guessContext.stroke();
 	targetContext.lineWidth = 5;
 	targetContext.strokeStyle = "black";
@@ -366,8 +364,6 @@ function reveal()
 	targetContext.stroke();
 	targetContext.strokeStyle = "white";
 	targetContext.setLineDash([10, 10]);
-	targetContext.beginPath();
-	targetContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
 	targetContext.stroke();
 	
 	for (const element of paramPanel.children)
@@ -422,11 +418,8 @@ function score()
 			}
 		}
 	}
-	// console.log(targetContext.isPointInPath(xTest*300/1000,yTest*150/1000));
-	// console.log(guessContext.isPointInPath(xTest*300/1000,yTest*150/1000));
-	// console.log(targetContext.isPointInPath(xTest*300/1000,yTest*150/1000) && guessContext.isPointInPath(xTest*300/1000,yTest*150/1000));
 	console.log(sharedCount);
 	console.log(areaTrue);
 	console.log(areaGuess);
-	console.log(sharedCount / max(areaTrue, areaGuess));
+	console.log(Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
 };
