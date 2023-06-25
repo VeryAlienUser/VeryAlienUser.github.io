@@ -96,6 +96,9 @@ window.onload=function()
 	targetContext = targetCanvas.getContext("2d", {willReadFrequently: true});
 	targetContext.scale(300/1000,150/1000);
 	
+	ellipseCheckbox = document.getElementById("ellipseCheckbox");
+	ellipseCheckbox.addEventListener("click", lensGuess);
+	
 	demoGame();
 };
 
@@ -248,17 +251,21 @@ function lensGuess()
 	
 	dataContext.putImageData(lensData,0,0);
 	guessContext.drawImage(dataCanvas,0,0);
-	guessContext.lineWidth = 5;
-	guessContext.strokeStyle = "black";
-	guessContext.setLineDash([]);
-	guessContext.beginPath();
-	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI);
-	guessContext.stroke();
-	guessContext.strokeStyle = "white";
-	guessContext.setLineDash([10, 10]);
-	guessContext.beginPath();
-	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI);
-	guessContext.stroke();
+	
+	if (ellipseCheckbox.checked)
+	{
+		guessContext.lineWidth = 5;
+		guessContext.strokeStyle = "black";
+		guessContext.setLineDash([]);
+		guessContext.beginPath();
+		guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+		guessContext.stroke();
+		guessContext.strokeStyle = "white";
+		guessContext.setLineDash([10, 10]);
+		guessContext.beginPath();
+		guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+		guessContext.stroke();
+	}
 };
 
 function getPixel(x, y, x0, y0, a, q, gamma)
@@ -299,8 +306,14 @@ function getPixel(x, y, x0, y0, a, q, gamma)
 
 function unLens()
 {
+	document.getElementById("guessLabel").innerHTML = "Source";
 	dataContext.drawImage(sourceIMG,0,0);
 	guessContext.drawImage(dataCanvas,0,0);
+};
+
+function reveal()
+{
+	
 };
 
 function score()

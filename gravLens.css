@@ -36,7 +36,6 @@
 		padding-bottom: 10px;
 		box-sizing: border-box;
 		display: inline-block;
-		/* vertical-align: middle; */
 	}
 	
 	h2 {
@@ -55,23 +54,25 @@
 	}
 	
 	paramPanel {
-		display: block;
-		text-align: right;
 		width: 50%;
-		float: left;
-		padding-right: 100px;
+		display: inline-block;
+		text-align: right;
+		margin-bottom: 5px;
 	}
 	
 	label {
 		color: rgb(255,255,255);
 	}
 	
-	input {
-		width: 100px;
+	input[type="text"] {
+		margin-right: 10px;
+		width: 50px;
 		height: 15px;
 	}
 	
 	input[type="range"] {
 		vertical-align: middle;
-		width: 30%;
+		width: 55%;
+		max-width: 415px;
+		height: 15px;
 	}
