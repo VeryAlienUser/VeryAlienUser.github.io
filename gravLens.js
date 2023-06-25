@@ -99,6 +99,9 @@ window.onload=function()
 	ellipseCheckbox = document.getElementById("ellipseCheckbox");
 	ellipseCheckbox.addEventListener("click", lensGuess);
 	
+	paramPanel = document.getElementsByTagName("paramPanel")[0];
+	revealButton = document.getElementById("revealButton");
+	
 	demoGame();
 };
 
@@ -114,6 +117,15 @@ function changeLevel(level)
 
 function demoGame()
 {
+	document.getElementById("guessLabel").innerHTML = "Source";
+	
+	for (const element of paramPanel.children)
+	{
+		element.disabled = false;
+	};
+	revealButton.innerHTML = "Reveal";
+	revealButton.onclick = reveal;
+	
 	dataContext.drawImage(sourceIMG,0,0);
 	sourceData = dataContext.getImageData(0,0,dataCanvas.width,dataCanvas.height);
 	
@@ -164,6 +176,15 @@ function demoGame()
 
 function playGame()
 {
+	document.getElementById("guessLabel").innerHTML = "Source";
+	
+	for (const element of paramPanel.children)
+	{
+		element.disabled = false;
+	};
+	revealButton.innerHTML = "Reveal";
+	revealButton.onclick = reveal;
+	
 	if (sourceIMG.src.includes("Demo-circle.png"))
 	{
 		demoGame();
@@ -312,28 +333,76 @@ function unLens()
 };
 
 function reveal()
-{
+{	
+	guessContext.lineWidth = 5;
+	guessContext.strokeStyle = "red";
+	guessContext.setLineDash([]);
+	guessContext.beginPath();
+	guessContext.ellipse(x0, y0, a, q*a, gamma + Math.PI/2, 0, 2*Math.PI);
+	guessContext.stroke();
+	targetContext.lineWidth = 5;
+	targetContext.strokeStyle = "red";
+	targetContext.setLineDash([]);
+	targetContext.beginPath();
+	targetContext.ellipse(x0, y0, a, q*a, gamma + Math.PI/2, 0, 2*Math.PI);
+	targetContext.stroke();
 	
+	guessContext.lineWidth = 5;
+	guessContext.strokeStyle = "black";
+	guessContext.setLineDash([]);
+	guessContext.beginPath();
+	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+	guessContext.stroke();
+	guessContext.strokeStyle = "white";
+	guessContext.setLineDash([10, 10]);
+	guessContext.beginPath();
+	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+	guessContext.stroke();
+	targetContext.lineWidth = 5;
+	targetContext.strokeStyle = "black";
+	targetContext.setLineDash([]);
+	targetContext.beginPath();
+	targetContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+	targetContext.stroke();
+	targetContext.strokeStyle = "white";
+	targetContext.setLineDash([10, 10]);
+	targetContext.beginPath();
+	targetContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+	targetContext.stroke();
+	
+	for (const element of paramPanel.children)
+	{
+		element.disabled = true;
+	};
+	
+	revealButton.innerHTML = "Next image";
+	revealButton.onclick = playGame;
+	revealButton.disabled = false;
 };
 
 function score()
 {
-	console.log([x0,x0Guess,y0,y0Guess,a,aGuess,q,qGuess,gamma*180/Math.PI,gammaGuess*180/Math.PI]);
+	// console.log([x0,x0Guess,y0,y0Guess,a,aGuess,q,qGuess,gamma*180/Math.PI,gammaGuess*180/Math.PI]);
 	
-	x0Score = Math.abs(x0 - x0Guess);
-	y0Score = Math.abs(y0 - y0Guess);
-	aScore = Math.abs(a - aGuess);
-	qScore = 300 * Math.abs(q - qGuess);
-	gammaScore = 100 * Math.abs(Math.sin(gamma) - Math.sin(gammaGuess)) * (1-q)**1;
-	console.log([x0Score,y0Score,aScore,qScore,gammaScore]);
+	// x0Score = Math.abs(x0 - x0Guess);
+	// y0Score = Math.abs(y0 - y0Guess);
+	// aScore = Math.abs(a - aGuess);
+	// qScore = 300 * Math.abs(q - qGuess);
+	// gammaScore = 100 * Math.abs(Math.sin(gamma) - Math.sin(gammaGuess)) * (1-q)**1;
+	// console.log([x0Score,y0Score,aScore,qScore,gammaScore]);
 	
-	loss = x0Score + y0Score + aScore + qScore + gammaScore;
-	console.log(loss);
-	lossFail = 500;
-	epsilon = lossFail / 99;
-	delta = 100 * epsilon;
-	console.log([epsilon,delta,loss]);
-	totalScore = delta / (loss + epsilon);
+	// loss = x0Score + y0Score + aScore + qScore + gammaScore;
+	// console.log(loss);
+	// lossFail = 500;
+	// epsilon = lossFail / 99;
+	// delta = 100 * epsilon;
+	// console.log([epsilon,delta,loss]);
+	// totalScore = delta / (loss + epsilon);
 	
-	console.log(totalScore);
+	// console.log(totalScore);
+	
+	areaGuess = Math.PI * aGuess ** 2 * qGuess;
+	areaTrue = Math.PI * a ** 2 * q;
+	
+	
 };
