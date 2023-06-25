@@ -247,7 +247,7 @@ function lensGuess()
 	};
 	
 	dataContext.putImageData(lensData,0,0);
-	dataContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI)
+	dataContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI);
 	guessContext.drawImage(dataCanvas,0,0);
 };
 
