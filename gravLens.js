@@ -161,6 +161,12 @@ function demoGame()
 
 function playGame()
 {
+	if (sourceIMG.src.includes("Demo-circle.png"))
+	{
+		demoGame();
+		return;
+	}
+	
 	dataContext.drawImage(sourceIMG,0,0);
 	sourceData = dataContext.getImageData(0,0,dataCanvas.width,dataCanvas.height);
 	
