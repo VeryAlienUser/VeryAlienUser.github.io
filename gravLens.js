@@ -416,7 +416,7 @@ function score()
 	{
 		for (yArea = 0; yArea < 1000; yArea ++)
 		{
-			if (targetContext.isPointInPath(xTest*300/1000,yTest*150/1000) && guessContext.isPointInPath(xTest*300/1000,yTest*150/1000))
+			if (targetContext.isPointInPath(xArea*300/1000,yArea*150/1000) && guessContext.isPointInPath(xArea*300/1000,yArea*150/1000))
 			{
 				sharedCount += 1;
 			}
