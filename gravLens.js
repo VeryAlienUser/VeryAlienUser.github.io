@@ -247,10 +247,18 @@ function lensGuess()
 	};
 	
 	dataContext.putImageData(lensData,0,0);
-	ctx.beginPath();
-	dataContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI);
-	ctx.stroke();
 	guessContext.drawImage(dataCanvas,0,0);
+	guessContext.lineWidth = 5;
+	guessContext.strokeStyle = "black";
+	guessContext.setLineDash([]);
+	guessContext.beginPath();
+	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI);
+	guessContext.stroke();
+	guessContext.strokeStyle = "white";
+	guessContext.setLineDash([10, 10]);
+	guessContext.beginPath();
+	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess, 0, 2*Math.PI);
+	guessContext.stroke();
 };
 
 function getPixel(x, y, x0, y0, a, q, gamma)
