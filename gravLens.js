@@ -378,6 +378,8 @@ function reveal()
 	revealButton.innerHTML = "Next image";
 	revealButton.onclick = playGame;
 	revealButton.disabled = false;
+	
+	score()
 };
 
 function score()
@@ -404,5 +406,27 @@ function score()
 	areaGuess = Math.PI * aGuess ** 2 * qGuess;
 	areaTrue = Math.PI * a ** 2 * q;
 	
+	targetContext.beginPath();
+	targetContext.ellipse(x0, y0, a, q*a, gamma + Math.PI/2, 0, 2*Math.PI);
+	guessContext.beginPath();
+	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
 	
+	sharedCount = 0;
+	for (xArea = 0; xArea < 1000; xArea ++)
+	{
+		for (yArea = 0; yArea < 1000; yArea ++)
+		{
+			if (targetContext.isPointInPath(xTest*300/1000,yTest*150/1000) && guessContext.isPointInPath(xTest*300/1000,yTest*150/1000))
+			{
+				sharedCount += 1;
+			}
+		}
+	}
+	// console.log(targetContext.isPointInPath(xTest*300/1000,yTest*150/1000));
+	// console.log(guessContext.isPointInPath(xTest*300/1000,yTest*150/1000));
+	// console.log(targetContext.isPointInPath(xTest*300/1000,yTest*150/1000) && guessContext.isPointInPath(xTest*300/1000,yTest*150/1000));
+	console.log(sharedCount);
+	console.log(areaTrue);
+	console.log(areaGuess);
+	console.log(sharedCount / max(areaTrue, areaGuess));
 };
