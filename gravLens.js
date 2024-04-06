@@ -124,6 +124,8 @@ function changeLevel(level)
 
 function demoGame()
 {
+	changeImage()
+	
 	demoMode = true;
 	
 	document.getElementById("guessLabel").innerHTML = "Source";
