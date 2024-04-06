@@ -415,10 +415,6 @@ function score()
 				}
 			}
 		}
-		console.log(sharedCount);
-		console.log(areaTrue);
-		console.log(areaGuess);
-		console.log(Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
 		
 		thisLensScore = (Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
 		totalScore += thisLensScore;
@@ -429,7 +425,7 @@ function score()
 		document.getElementById("thisLensScore").innerHTML = thisLensScore;
 		document.getElementById("totalScore").innerHTML = totalScore;
 		document.getElementById("numLenses").innerHTML = numLenses;
-		document.getElementById("avgScore").innerHTML = avgScore;
+		document.getElementById("avgScore").innerHTML = avgScore.toFixed(2);
 	}
 };
 
