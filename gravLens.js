@@ -213,7 +213,7 @@ function playGame()
 	var success = false;
 	while(success == false)
 	{
-		a = Math.exp(Math.random()*Math.log(3.5) + Math.log(100));
+		a = 0.7*Math.exp(Math.random()*Math.log(3.5) + Math.log(100));
 		q = Math.random()*0.69 + 0.3;
 		gamma = Math.random()*Math.PI;
 		selectablePixels = [];
@@ -291,12 +291,12 @@ function lensGuess()
 		guessContext.strokeStyle = "black";
 		guessContext.setLineDash([]);
 		guessContext.beginPath();
-		guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+		guessContext.ellipse(x0Guess, y0Guess, aGuess/Math.sqrt(qGuess), qGuess*aGuess/Math.sqrt(qGuess), gammaGuess + Math.PI/2, 0, 2*Math.PI);
 		guessContext.stroke();
 		guessContext.strokeStyle = "white";
 		guessContext.setLineDash([10, 10]);
 		guessContext.beginPath();
-		guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+		guessContext.ellipse(x0Guess, y0Guess, aGuess/Math.sqrt(qGuess), qGuess*aGuess/Math.sqrt(qGuess), gammaGuess + Math.PI/2, 0, 2*Math.PI);
 		guessContext.stroke();
 	}
 };
@@ -365,7 +365,7 @@ function reveal()
 	guessContext.strokeStyle = "black";
 	guessContext.setLineDash([]);
 	guessContext.beginPath();
-	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+	guessContext.ellipse(x0Guess, y0Guess, aGuess/Math.sqrt(qGuess), qGuess*aGuess/Math.sqrt(qGuess), gammaGuess + Math.PI/2, 0, 2*Math.PI);
 	guessContext.stroke();
 	guessContext.strokeStyle = "white";
 	guessContext.setLineDash([10, 10]);
@@ -374,7 +374,7 @@ function reveal()
 	targetContext.strokeStyle = "black";
 	targetContext.setLineDash([]);
 	targetContext.beginPath();
-	targetContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+	targetContext.ellipse(x0Guess, y0Guess, aGuess/Math.sqrt(qGuess), qGuess*aGuess/Math.sqrt(qGuess), gammaGuess + Math.PI/2, 0, 2*Math.PI);
 	targetContext.stroke();
 	targetContext.strokeStyle = "white";
 	targetContext.setLineDash([10, 10]);
