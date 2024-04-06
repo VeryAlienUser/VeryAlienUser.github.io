@@ -412,7 +412,7 @@ function score()
 function scoreDisplay()
 {
 	scores = document.getElementById("scores");
-	if (ellipseCheckbox.checked)
+	if (scoreCheckbox.checked)
 	{
 		scores.style.visibility = 'visible';
 	}
