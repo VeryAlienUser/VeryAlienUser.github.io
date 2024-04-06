@@ -199,8 +199,7 @@ function playGame()
 	
 	if (sourceIMG.src.includes("Demo-circle.png"))
 	{
-		demoGame();
-		return;
+		sourceIMG.src = "JWST01.png";
 	}
 	
 	dataContext.drawImage(sourceIMG,0,0);
