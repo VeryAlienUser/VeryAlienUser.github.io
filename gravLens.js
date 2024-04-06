@@ -26,7 +26,7 @@ var gammaGuess;
 var x0Guess;
 var y0Guess;
 
-var numLenses;
+var numLenses = 0;
 var totalScore;
 
 function getCursorPosition(canvas, event) {
