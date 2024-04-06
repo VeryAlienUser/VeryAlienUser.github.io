@@ -26,6 +26,9 @@ var gammaGuess;
 var x0Guess;
 var y0Guess;
 
+var numLenses;
+var totalScore;
+
 function getCursorPosition(canvas, event) {
     const guessCanvasRect = canvas.getBoundingClientRect();
     const guessCanvasX = Math.max(Math.min(Math.floor(1000/guessCanvasRect.width*(event.clientX - guessCanvasRect.left)),1000),0);
@@ -187,6 +190,7 @@ function playGame()
 	};
 	revealButton.innerHTML = "Reveal";
 	revealButton.onclick = reveal;
+	document.getElementById("lensCurrent").innerHTML = "Previous";
 	
 	if (sourceIMG.src.includes("Demo-circle.png"))
 	{
@@ -407,6 +411,17 @@ function score()
 	console.log(areaTrue);
 	console.log(areaGuess);
 	console.log(Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
+	
+	thisLensScore = (Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
+	totalScore += thisLensScore;
+	numLenses += 1;
+	avgScore = totalScore/numLenses;
+	
+	document.getElementById("lensCurrent").innerHTML = "This";
+	document.getElementById("thisLensScore").innerHTML = thisLensScore;
+	document.getElementById("totalScore").innerHTML = totalScore;
+	document.getElementById("numLenses").innerHTML = numLenses;
+	document.getElementById("avgScore").innerHTML = avgScore;
 };
 
 function scoreDisplay()
