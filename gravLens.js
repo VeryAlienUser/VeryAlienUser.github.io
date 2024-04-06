@@ -27,7 +27,7 @@ var x0Guess;
 var y0Guess;
 
 var numLenses = 0;
-var totalScore;
+var totalScore = 0;
 
 function getCursorPosition(canvas, event) {
     const guessCanvasRect = canvas.getBoundingClientRect();
