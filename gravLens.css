@@ -60,6 +60,13 @@
 		margin-bottom: 5px;
 	}
 	
+	scorePanel {
+		width: 50%;
+		display: inline-block;
+		text-align: left;
+		margin-bottom: 5px;
+	}
+	
 	label {
 		color: rgb(255,255,255);
 	}

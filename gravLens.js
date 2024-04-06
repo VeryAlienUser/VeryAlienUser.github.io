@@ -380,24 +380,6 @@ function reveal()
 
 function score()
 {
-	// console.log([x0,x0Guess,y0,y0Guess,a,aGuess,q,qGuess,gamma*180/Math.PI,gammaGuess*180/Math.PI]);
-	
-	// x0Score = Math.abs(x0 - x0Guess);
-	// y0Score = Math.abs(y0 - y0Guess);
-	// aScore = Math.abs(a - aGuess);
-	// qScore = 300 * Math.abs(q - qGuess);
-	// gammaScore = 100 * Math.abs(Math.sin(gamma) - Math.sin(gammaGuess)) * (1-q)**1;
-	// console.log([x0Score,y0Score,aScore,qScore,gammaScore]);
-	
-	// loss = x0Score + y0Score + aScore + qScore + gammaScore;
-	// console.log(loss);
-	// lossFail = 500;
-	// epsilon = lossFail / 99;
-	// delta = 100 * epsilon;
-	// console.log([epsilon,delta,loss]);
-	// totalScore = delta / (loss + epsilon);
-	
-	// console.log(totalScore);
 	
 	areaGuess = Math.PI * aGuess ** 2 * qGuess;
 	areaTrue = Math.PI * a ** 2 * q;
