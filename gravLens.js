@@ -108,7 +108,7 @@ window.onload=function()
 	paramPanel = document.getElementsByTagName("paramPanel")[0];
 	revealButton = document.getElementById("revealButton");
 	
-	demoGame();
+	playGame();
 };
 
 function changeImage(imgName)
