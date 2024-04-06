@@ -99,6 +99,9 @@ window.onload=function()
 	ellipseCheckbox = document.getElementById("ellipseCheckbox");
 	ellipseCheckbox.addEventListener("click", lensGuess);
 	
+	scoreCheckbox = document.getElementById("scoreCheckbox");
+	scoreCheckbox.addEventListener("click", scoreDisplay);
+	
 	paramPanel = document.getElementsByTagName("paramPanel")[0];
 	revealButton = document.getElementById("revealButton");
 	
@@ -404,4 +407,17 @@ function score()
 	console.log(areaTrue);
 	console.log(areaGuess);
 	console.log(Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
+};
+
+function scoreDisplay()
+{
+	scores = document.getElementById("scores");
+	if (ellipseCheckbox.checked)
+	{
+		scores.style.visibility = 'visible';
+	}
+	else
+	{
+		scores.style.visibility = 'hidden';
+	}
 };
