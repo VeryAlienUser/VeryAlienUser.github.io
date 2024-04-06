@@ -316,8 +316,8 @@ function getPixel(x, y, x0, y0, a, q, gamma)
 	var yr = -(x - x0) * Math.sin(gamma) + (y - y0) * Math.cos(gamma);
 	
 	var phi = Math.atan2(yr,xr);
-	var da = -a * q / q2 * Math.asinh(q2 / q * Math.cos(phi));
-	var db = -a * q / q2 * Math.asin(q2 * Math.sin(phi));
+	var da = -a * q / q2 * Math.asinh(q2 / q * Math.cos(phi))/Math.sqrt(q);
+	var db = -a * q / q2 * Math.asin(q2 * Math.sin(phi))/Math.sqrt(q);
 	
 	var dx = da * Math.cos(gamma) - db * Math.sin(gamma);
 	var dy = da * Math.sin(gamma) + db * Math.cos(gamma);
