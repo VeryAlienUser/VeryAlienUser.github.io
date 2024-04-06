@@ -346,6 +346,8 @@ function unLens()
 
 function reveal()
 {	
+	lensGuess();
+
 	guessContext.lineWidth = 5;
 	guessContext.strokeStyle = "red";
 	guessContext.setLineDash([]);
