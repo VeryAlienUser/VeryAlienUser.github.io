@@ -222,7 +222,7 @@ function playGame()
 			var y = Math.floor(i / (4 * dataCanvas.width));
 			var x = i / 4 - y * dataCanvas.width;
 			
-			if(x >= 1.5*a && x <= 1000-3*a && y >= 1.5*a && y<=1000-3*a && Math.abs(x - previousPixel1[0]) >= 50 && Math.abs(y - previousPixel1[1]) >= 50 && Math.abs(x - previousPixel2[0]) >= 50 && Math.abs(y - previousPixel2[1]) >= 50 && sourceData.data[i+0] + sourceData.data[i+1] + sourceData.data[i+2] > 75)
+			if(x >= 1.5*a && x <= 1000-3*a && y >= 1.5*a && y<=1000-3*a && Math.abs(x - previousPixel1[0]) >= 50 && Math.abs(y - previousPixel1[1]) >= 50 && Math.abs(x - previousPixel2[0]) >= 50 && Math.abs(y - previousPixel2[1]) >= 50 && sourceData.data[i+0] + sourceData.data[i+1] + sourceData.data[i+2] > 150)
 			{
 				selectablePixels.push([x,y]);
 			};
