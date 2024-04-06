@@ -124,8 +124,6 @@ function changeLevel(level)
 
 function demoGame()
 {
-	changeImage()
-	
 	demoMode = true;
 	
 	document.getElementById("guessLabel").innerHTML = "Source";
@@ -202,6 +200,7 @@ function playGame()
 	if (sourceIMG.src.includes("Demo-circle.png"))
 	{
 		sourceIMG.src = "JWST01.png";
+		document.getElementById("dropDownImage").value = "JWST01";
 	}
 	
 	dataContext.drawImage(sourceIMG,0,0);
