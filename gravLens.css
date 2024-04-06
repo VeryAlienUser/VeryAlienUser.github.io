@@ -69,6 +69,10 @@
 		margin-left: 10px;
 	}
 	
+	p {
+		padding-bottom: 0px;
+	}
+	
 	label {
 		color: rgb(255,255,255);
 	}
