@@ -26,6 +26,7 @@ var gammaGuess;
 var x0Guess;
 var y0Guess;
 
+var demoMode = false;
 var numLenses = 0;
 var totalScore = 0;
 
@@ -123,6 +124,8 @@ function changeLevel(level)
 
 function demoGame()
 {
+	demoMode = true;
+	
 	document.getElementById("guessLabel").innerHTML = "Source";
 	
 	for (const element of paramPanel.children)
@@ -182,6 +185,8 @@ function demoGame()
 
 function playGame()
 {
+	demoMode = false;
+	
 	document.getElementById("guessLabel").innerHTML = "Source";
 	
 	for (const element of paramPanel.children)
@@ -387,41 +392,43 @@ function reveal()
 
 function score()
 {
-	
-	areaGuess = Math.PI * aGuess ** 2 * qGuess;
-	areaTrue = Math.PI * a ** 2 * q;
-	
-	targetContext.beginPath();
-	targetContext.ellipse(x0, y0, a, q*a, gamma + Math.PI/2, 0, 2*Math.PI);
-	guessContext.beginPath();
-	guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
-	
-	sharedCount = 0;
-	for (xArea = 0; xArea < 1000; xArea ++)
+	if (!demoMode)
 	{
-		for (yArea = 0; yArea < 1000; yArea ++)
+		areaGuess = Math.PI * aGuess ** 2 * qGuess;
+		areaTrue = Math.PI * a ** 2 * q;
+		
+		targetContext.beginPath();
+		targetContext.ellipse(x0, y0, a, q*a, gamma + Math.PI/2, 0, 2*Math.PI);
+		guessContext.beginPath();
+		guessContext.ellipse(x0Guess, y0Guess, aGuess, qGuess*aGuess, gammaGuess + Math.PI/2, 0, 2*Math.PI);
+		
+		sharedCount = 0;
+		for (xArea = 0; xArea < 1000; xArea ++)
 		{
-			if (targetContext.isPointInPath(xArea*300/1000,yArea*150/1000) && guessContext.isPointInPath(xArea*300/1000,yArea*150/1000))
+			for (yArea = 0; yArea < 1000; yArea ++)
 			{
-				sharedCount += 1;
+				if (targetContext.isPointInPath(xArea*300/1000,yArea*150/1000) && guessContext.isPointInPath(xArea*300/1000,yArea*150/1000))
+				{
+					sharedCount += 1;
+				}
 			}
 		}
+		console.log(sharedCount);
+		console.log(areaTrue);
+		console.log(areaGuess);
+		console.log(Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
+		
+		thisLensScore = (Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
+		totalScore += thisLensScore;
+		numLenses += 1;
+		avgScore = totalScore/numLenses;
+		
+		document.getElementById("lensCurrent").innerHTML = "This";
+		document.getElementById("thisLensScore").innerHTML = thisLensScore;
+		document.getElementById("totalScore").innerHTML = totalScore;
+		document.getElementById("numLenses").innerHTML = numLenses;
+		document.getElementById("avgScore").innerHTML = avgScore;
 	}
-	console.log(sharedCount);
-	console.log(areaTrue);
-	console.log(areaGuess);
-	console.log(Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
-	
-	thisLensScore = (Math.trunc(sharedCount / Math.max(areaTrue, areaGuess) * 100));
-	totalScore += thisLensScore;
-	numLenses += 1;
-	avgScore = totalScore/numLenses;
-	
-	document.getElementById("lensCurrent").innerHTML = "This";
-	document.getElementById("thisLensScore").innerHTML = thisLensScore;
-	document.getElementById("totalScore").innerHTML = totalScore;
-	document.getElementById("numLenses").innerHTML = numLenses;
-	document.getElementById("avgScore").innerHTML = avgScore;
 };
 
 function scoreDisplay()
